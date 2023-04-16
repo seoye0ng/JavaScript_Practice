@@ -32,13 +32,17 @@ function clickOperatBtn(operatorBtns) {
   });
 }
 
-//3. reset
-optionBtn.forEach((btn) => {
-  btn.addEventListener('click', () => {
-    if (btn.value === 'RESET') {
-      output.value = '';
-      storage = [];
-      operator = [];
-    }
+//3. reset, backspace
+function clickOptionBtn() {
+  optionBtn.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      if (btn.value === 'RESET') {
+        output.value = '';
+        storage = [];
+        operator = [];
+      } else if (btn.value === 'BACKSPACE') {
+        output.value = output.value.slice(0, -1);
+      }
+    });
   });
-});
+}
