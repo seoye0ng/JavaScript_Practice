@@ -26,7 +26,8 @@ function clickOperatBtn(operatorBtns) {
     btn.addEventListener('click', () => {
       storage.push(output.value);
       operator.push(btn.value);
-      subOutput.value += output.value;
+      output.value = '';
+      // subOutput.value += output.value;
     });
   });
 }
