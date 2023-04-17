@@ -10,6 +10,7 @@ let operator = [];
 
 clickOperatBtn(operatorBtns);
 clickNumBtn(numBtns);
+clickOptionBtn();
 
 // 1.
 function clickNumBtn() {
@@ -27,9 +28,29 @@ function clickOperatBtn(operatorBtns) {
       storage.push(output.value);
       operator.push(btn.value);
       output.value = '';
+      if (btn.value === '=') {
+        output.value = calculation();
+      }
       // subOutput.value += output.value;
     });
   });
+}
+
+//4. calculation
+function calculation() {
+  for (let i = 0; i < storage.length; i += 2) {
+    for (let j = 0; j < operator.length; i++) {
+      if (operator[j] === '+') {
+        return parseInt(storage[i]) + parseInt(storage[i + 1]);
+      } else if (operator[i] === '-') {
+        return parseInt(storage[i]) - parseInt(storage[i + 1]);
+      } else if (operator[i] === '*') {
+        return parseInt(storage[i]) * parseInt(storage[i + 1]);
+      } else if (operator[i] === '/') {
+        return parseInt(storage[i]) / parseInt(storage[i + 1]);
+      }
+    }
+  }
 }
 
 //3. reset, backspace
