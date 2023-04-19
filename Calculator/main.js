@@ -26,34 +26,38 @@ function clickOperatBtn(operatorBtns) {
   operatorBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
       storage.push(output.value);
-      operator.push(btn.value);
       output.value = '';
+
       if (btn.value === '=') {
         output.value = calculation();
+      } else {
+        operator.push(btn.value);
       }
+
       // subOutput.value += output.value;
     });
   });
 }
 
-//4. calculation
+// 4. calculation
 function calculation() {
-  for (let i = 0; i < storage.length; i += 2) {
-    for (let j = 0; j < operator.length; i++) {
-      if (operator[j] === '+') {
-        return parseInt(storage[i]) + parseInt(storage[i + 1]);
-      } else if (operator[i] === '-') {
-        return parseInt(storage[i]) - parseInt(storage[i + 1]);
-      } else if (operator[i] === '*') {
-        return parseInt(storage[i]) * parseInt(storage[i + 1]);
-      } else if (operator[i] === '/') {
-        return parseInt(storage[i]) / parseInt(storage[i + 1]);
-      }
+  let result = parseInt(storage.shift());
+  for (let i = 0; i < storage.length; i++) {
+    if (operator[i] === '+') {
+      result += parseInt(storage[i]);
+      console.log(result);
+    } else if (operator[i] === '-') {
+      result -= parseInt(storage[i]);
+    } else if (operator[i] === '*') {
+      result *= parseInt(storage[i]);
+    } else if (operator[i] === '/') {
+      result /= parseInt(storage[i]);
     }
   }
+  return result.toString();
 }
 
-//3. reset, backspace
+// 3. reset, backspace
 function clickOptionBtn() {
   optionBtn.forEach((btn) => {
     btn.addEventListener('click', () => {
